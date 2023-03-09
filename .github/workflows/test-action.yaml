@@ -55,14 +55,14 @@ jobs:
       packages: read
     needs:
       - container-build
-    services:
-      otel-server:
+    # services:
+    #   otel-server:
         # Apparently env is not accessible from GHA services
-        image: "${{ needs.container-build.outputs.tags }}"
-        env:
-          SERVER: "true"
-        ports:
-          - 4317:4317
+        # image: "${{ needs.container-build.outputs.tags }}"
+        # env:
+        #   SERVER: "true"
+        # ports:
+        #   - 4317:4317
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
