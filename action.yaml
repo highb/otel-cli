@@ -1,0 +1,15 @@
+# action.yml
+name: 'OTEL CLI'
+description: 'Run otel-cli from GitHub actions'
+inputs:
+  args:  # id of input
+    description: 'Args that will be passed to otelcli'
+    required: true
+outputs:
+  stdout:
+    description: 'Output from OTEL CLI'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.args }}
