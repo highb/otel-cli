@@ -11,4 +11,6 @@ printf '%d args:' "$#"
 printf " '%s'" "$@"
 printf '\n'
 
-/otel-cli "$@"
+# We want the shell to expand the arguments here
+# shellcheck disable=SC2068
+/otel-cli $@
