@@ -16,6 +16,9 @@ jobs:
   container-build:
     name: Build Container
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -44,6 +47,9 @@ jobs:
   action-testing:
     name: Action Testing
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
     needs:
       - container-build
     services:
