@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Fail on non-zero exit code
 set -e
@@ -11,6 +11,11 @@ printf '%d args:' "$#"
 printf " '%s'" "$@"
 printf '\n'
 
-# We want the shell to expand the arguments here
-# shellcheck disable=SC2068
-/otel-cli $@
+if [[ "${SERVER}" == "true" ]]; then
+  echo "Starting otel-cli in server mode"
+  /otel-cli server tui
+else
+  # We want the shell to expand the arguments here
+  # shellcheck disable=SC2068
+  /otel-cli $@
+fi

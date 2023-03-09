@@ -35,8 +35,10 @@ jobs:
     needs:
       - container-build
     services:
-      otel-cli-server:
+      otel-server:
         image: "otel-cli:ci"
+        env:
+          SERVER: "true"
         ports:
           - 4317:4317
     steps:
@@ -46,5 +48,5 @@ jobs:
       - name: Send a trace
         uses: ./
         with:
-          otel-exporter-oltp-endpoint: localhost:4317
+          otel-exporter-oltp-endpoint: otel-server:4317
           args: "otel-cli exec --service my-service --name 'curl google' curl https://google.com"
