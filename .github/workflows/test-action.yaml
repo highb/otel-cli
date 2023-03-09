@@ -1,5 +1,5 @@
 ---
-name: Test the Action
+name: Test Action
 on:
   push:
     branches:
@@ -54,7 +54,7 @@ jobs:
       - container-build
     services:
       otel-server:
-        image: "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest"
+        image: "ghcr.io/${{ github.repository }}:latest"
         env:
           SERVER: "true"
         ports:
