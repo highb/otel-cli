@@ -14,7 +14,7 @@ outputs:
     description: 'Output from OTEL CLI'
 runs:
   using: 'docker'
-  image: 'Dockerfile'
+  image: 'ghcr.io/highb/otel-cli:pr-1'
   env:
     OTEL_EXPORTER_OTLP_ENDPOINT: ${{ inputs.otel-exporter-oltp-endpoint }}
   args:
