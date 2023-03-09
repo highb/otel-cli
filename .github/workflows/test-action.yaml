@@ -71,4 +71,4 @@ jobs:
         uses: ./
         with:
           otel-exporter-oltp-endpoint: otel-server:4317
-          args: "otel-cli exec --service my-service --name 'curl google' curl https://google.com"
+          args: "exec --service my-service --name 'curl google' curl https://google.com"
