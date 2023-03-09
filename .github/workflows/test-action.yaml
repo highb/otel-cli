@@ -58,7 +58,7 @@ jobs:
     services:
       otel-server:
         # Apparently env is not accessible from GHA services
-        image: "ghcr.io/${{ github.repository }}:${{ needs.container-build.outputs.tags }}"
+        image: "${{ needs.container-build.outputs.tags }}"
         env:
           SERVER: "true"
         ports:
