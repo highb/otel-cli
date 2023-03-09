@@ -11,4 +11,4 @@ printf '%d args:' "$#"
 printf " '%s'" "$@"
 printf '\n'
 
-./otel-cli "$@"
+/otel-cli "$@"
