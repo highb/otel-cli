@@ -5,11 +5,17 @@ inputs:
   args:  # id of input
     description: 'Args that will be passed to otelcli'
     required: true
+  otel-exporter-oltp-endpoint:
+    description: 'OTLP endpoint'
+    required: false
+    default: 'localhost:4317'
 outputs:
   stdout:
     description: 'Output from OTEL CLI'
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  env:
+    OTEL_EXPORTER_OTLP_ENDPOINT: ${{ inputs.otel-exporter-oltp-endpoint }}
   args:
     - ${{ inputs.args }}

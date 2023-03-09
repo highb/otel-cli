@@ -20,10 +20,10 @@ jobs:
         uses: ./
         # run otel-cli as a local OTLP server and print traces to your console
         with:
-          args: "server tui"
+          args: "server tui &"
 
-# # configure otel-cli to talk the the local server spawned above
-# export OTEL_EXPORTER_OTLP_ENDPOINT=localhost:4317
-
-# # run a program inside a span
-# otel-cli exec --service my-service --name "curl google" curl https://google.com
+      - name: Send a trace
+        uses: ./
+        with:
+          otel-exporter-oltp-endpoint: localhost:4317
+          args: "otel-cli exec --service my-service --name 'curl google' curl https://google.com"
