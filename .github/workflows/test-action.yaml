@@ -10,24 +10,33 @@ on:
 
 jobs:
   container-build:
-    name: Build the container
+    name: Build Container
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
+    steps:
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
+      - name: Log in to the Container registry
+        uses: docker/login-action@v2.1.0
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v4.3.0
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
-      - name: Build the container
-        uses: docker/build-push-action@v2
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4.0.0
         with:
           context: .
-          push: false
-          tags: "otel-cli:ci"
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
 
   action-testing:
     name: Action Testing
@@ -36,7 +45,7 @@ jobs:
       - container-build
     services:
       otel-server:
-        image: "otel-cli:ci"
+        image: "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest"
         env:
           SERVER: "true"
         ports:
