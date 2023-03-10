@@ -1,0 +1,21 @@
+# action.yml
+name: 'OTEL CLI'
+description: 'Run otel-cli from GitHub actions'
+inputs:
+  run:  # id of input
+    description: 'Script that will be run in container with otelcli'
+    required: true
+  otel-exporter-oltp-endpoint:
+    description: 'OTLP endpoint'
+    required: false
+    default: 'localhost:4317'
+outputs:
+  stdout:
+    description: 'Output from OTEL CLI'
+runs:
+  using: 'docker'
+  image: 'ghcr.io/highb/otel-cli:pr-1'
+  env:
+    OTEL_EXPORTER_OTLP_ENDPOINT: ${{ inputs.otel-exporter-oltp-endpoint }}
+  args:
+    - ${{ inputs.run }}
