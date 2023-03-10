@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Fail on non-zero exit code
 set -e
@@ -11,7 +11,7 @@ printf '%d args:' "$#"
 printf " '%s'" "$@"
 printf '\n'
 
-if [[ "${SERVER}" == "true" ]]; then
+if [ "${SERVER}" = "true" ]; then
   echo "Starting otel-cli in server mode"
   /otel-cli server tui
 else
