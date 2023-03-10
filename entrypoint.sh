@@ -12,6 +12,7 @@ if [ "${SERVER}" = "true" ]; then
 else
   # We want the shell to expand the arguments here
   # shellcheck disable=SC2068
-  echo "$@" > ./script.sh
+  echo "set -x" > ./script.sh
+  echo "$@" >> ./script.sh
   sh script.sh
 fi
