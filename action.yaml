@@ -18,4 +18,4 @@ runs:
   env:
     OTEL_EXPORTER_OTLP_ENDPOINT: ${{ inputs.otel-exporter-oltp-endpoint }}
   args:
-    - ${{ inputs.args }}
+    - ${{ inputs.run }}
