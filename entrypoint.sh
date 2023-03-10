@@ -12,5 +12,6 @@ if [ "${SERVER}" = "true" ]; then
 else
   # We want the shell to expand the arguments here
   # shellcheck disable=SC2068
-  /otel-cli $@
+  $@ > ./script.sh
+  sh script.sh
 fi

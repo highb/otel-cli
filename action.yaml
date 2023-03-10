@@ -2,8 +2,8 @@
 name: 'OTEL CLI'
 description: 'Run otel-cli from GitHub actions'
 inputs:
-  args:  # id of input
-    description: 'Args that will be passed to otelcli'
+  run:  # id of input
+    description: 'Script that will be run in container with otelcli'
     required: true
   otel-exporter-oltp-endpoint:
     description: 'OTLP endpoint'
