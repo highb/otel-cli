@@ -73,5 +73,4 @@ jobs:
         with:
           otel-exporter-oltp-endpoint: otel-server:4317
           run: |-
-            env
             otel-cli exec --service my-service --name 'echo something' echo something"
