@@ -72,4 +72,4 @@ jobs:
         uses: ./
         with:
           otel-exporter-oltp-endpoint: otel-server:4317
-          run: "./otel-cli exec --service my-service --name 'curl google' curl https://google.com"
+          run: "otel-cli exec --service my-service --name 'curl google' curl https://google.com"

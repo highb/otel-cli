@@ -13,6 +13,7 @@ else
   # We want the shell to expand the arguments here
   # shellcheck disable=SC2068
   echo "set -x" > ./script.sh
+  echo "export PATH=\$PATH:/" >> ./script.sh
   echo "$@" >> ./script.sh
   sh script.sh
 fi
