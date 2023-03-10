@@ -3,6 +3,9 @@
 # Fail on non-zero exit code
 set -e
 
+# Set verbose output
+set -x
+
 if [ "${SERVER}" = "true" ]; then
   echo "Starting otel-cli in server mode"
   /otel-cli server tui
